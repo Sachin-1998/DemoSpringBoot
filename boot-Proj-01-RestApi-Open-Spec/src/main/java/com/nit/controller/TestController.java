@@ -30,7 +30,7 @@ public class TestController
 		return service.registerStudent(student);
 	}
 	@GetMapping("/get/{id}")
-	@ResponseStatus(HttpStatus.OK)
+	//@ResponseStatus(HttpStatus.OK)
 	public Student getStudentById(@PathVariable Integer id)
 	{
 		return service.getSingleStudent(id);
@@ -43,7 +43,7 @@ public class TestController
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	@ResponseStatus(HttpStatus.OK)
+	//@ResponseStatus(HttpStatus.OK)
 	public String removeById(@PathVariable Integer id)
 	{
 		return service.deleteById(id);

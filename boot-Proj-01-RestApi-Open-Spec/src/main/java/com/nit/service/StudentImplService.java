@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.nit.entity.Student;
+import com.nit.exception.studentNotFoundException;
 import com.nit.repository.IStudentRepo;
 
 @Service
@@ -15,6 +16,7 @@ public class StudentImplService implements IStudentMgmtService {
 
 	@Autowired
 	private IStudentRepo studRepo;
+	
 	@Override
 	public String registerStudent(Student student) {
 		studRepo.save(student);
@@ -27,7 +29,7 @@ public class StudentImplService implements IStudentMgmtService {
 		 * Optional<Student> list = studRepo.findById(id); return list; } else throw new
 		 * IllegalArgumentException("given id is not found");
 		 */
-		return studRepo.findById(id).orElseThrow(()-> new IllegalArgumentException("Id is not found"));
+		return studRepo.findById(id).orElseThrow(()-> new studentNotFoundException("try with correct ID"));
 	}
 	@Override
 	public List<Student> getAllStudents() {
@@ -42,7 +44,7 @@ public class StudentImplService implements IStudentMgmtService {
 			return "Student is deleted Successfully with id "+id;
 		}
 		else
-			throw new IllegalArgumentException("Id is not found");
+			throw new studentNotFoundException("Id is not found to delete..!");
 	}
 
 }
